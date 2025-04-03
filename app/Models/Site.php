@@ -13,6 +13,7 @@ class Site extends Model
         'site_name',
         'site_description',
         'site_localisation',
-        'site_amount'
+        'site_amount',
+        'site_number_available'
     ];
 }

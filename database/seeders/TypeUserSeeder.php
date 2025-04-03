@@ -28,7 +28,7 @@ class TypeUserSeeder extends Seeder
         
         // Insère les trois types d'utilisateurs
         TypeUser::create(['label_type' => 'admin']);
-        TypeUser::create(['label_type' => 'director']);
+        TypeUser::create(['label_type' => 'organizer']);
         TypeUser::create(['label_type' => 'customer']);
     }
 }

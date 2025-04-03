@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     //
-    protected $table = 'event';
+    protected $table = 'events';
     protected $fillable = [
+        'picture_event',
         'label_event',
         'description_event',
         'start_date',
         'end_date',
         'localisation',
-        'amount'
+        'amount',
+        'number_available_event'
     ];
 }

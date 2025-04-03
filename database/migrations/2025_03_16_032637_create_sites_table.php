@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('site_description');
             $table->string('site_localisation');
             $table->decimal('site_amount', 10, 2);
+            $table->integer('site_number_available');
             $table->timestamps();
         });
     }
