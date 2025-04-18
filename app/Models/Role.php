@@ -4,17 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TypeUser extends Model
+class Role extends Model
 {
     //
-    protected $table = 'type_users';
+    protected $table = 'roles';
 
     protected $fillable = [
-        'label_type'
+        'label_role'
     ];
     
     public function users(){
-        return $this->hasMany(User::class, 'id_type_user');
+        return $this->hasMany(User::class, 'role_id');
     }
     
 }

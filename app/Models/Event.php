@@ -15,7 +15,7 @@ class Event extends Model
         'start_date',
         'end_date',
         'localisation',
-        'amount',
+        'amount_event',
         'number_available_event'
     ];
 }

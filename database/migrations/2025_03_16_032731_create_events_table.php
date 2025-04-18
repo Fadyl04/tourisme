@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('localisation');
-            $table->decimal('amount', 10, 2);
+            $table->decimal('amount_event', 10, 2);
             $table->integer('number_available_event');
             $table->timestamps();
         });

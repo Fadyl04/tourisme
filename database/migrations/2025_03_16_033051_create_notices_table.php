@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->nullable()->constrained('users')->onDelete('cascade');
-            $table->foreignId('id_site')->nullable()->constrained('sites')->onDelete('set null');
-            $table->foreignId('id_event')->nullable()->constrained('events')->onDelete('set null');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('site_id')->nullable()->constrained('sites')->onDelete('set null');
+            $table->foreignId('event_id')->nullable()->constrained('events')->onDelete('set null');
             $table->integer('note')->checkBetween(1, 5);
             $table->text('comment');
             $table->timestamp('notice_date')->useCurrent();

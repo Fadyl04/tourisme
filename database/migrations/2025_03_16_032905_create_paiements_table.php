@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('paiements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_reservation')->constrained('reservations')->onDelete('cascade');
-            $table->decimal('amount', 10, 2);
+            $table->foreignId('reservation_id')->constrained('reservations')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->decimal('amount_paiement', 10, 2);
+            $table->timestamp('date_paiement')->useCurrent();;
             $table->enum('status', ['pending', 'paid', 'failure'])->default('pending');
-            $table->enum('method', ['feda_pay', 'bank_card']);
-            $table->string('id_transaction', 255)->unique();
+            $table->enum('method', ['mobile_money', 'bank_card']);
+            $table->string('transaction_id', 255)->unique();
             $table->timestamps();
         });
     }

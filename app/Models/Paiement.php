@@ -9,15 +9,21 @@ class Paiement extends Model
     //
     protected $table = 'paiements';
     protected $fillable = [
-        'id_reservation', 
-        'amount', 
+        'reservation_id',
+        'user_id', 
+        'amount_paiement',
+        'date_paiement',
         'status', 
         'method', 
-        'id_transaction'
+        'transaction_id'
     ];
 
     public function reservation()
     {
-        return $this->belongsTo(Reservation::class, 'id_reservation');
+        return $this->belongsTo(Reservation::class, 'reservation_id');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

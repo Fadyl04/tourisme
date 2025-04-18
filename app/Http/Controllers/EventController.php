@@ -45,7 +45,7 @@ class EventController extends Controller
                 'start_date' => 'required|date|after_or_equal:today',
                 'end_date' => 'required|date|after_or_equal:start_date',
                 'localisation' => 'required|string|max:255',
-                'amount' => 'required|numeric|min:0|max:1000000',
+                'amount_event' => 'required|numeric|min:0|max:1000000',
                 'number_available_event' => 'required|integer|min:0'
             ]);
 
@@ -70,7 +70,7 @@ class EventController extends Controller
                 'start_date' => $validated['start_date'],
                 'end_date' => $validated['end_date'],
                 'localisation' => $validated['localisation'],
-                'amount' => $validated['amount'],
+                'amount_event' => $validated['amount'],
                 'number_available_event' => $validated['number_available_event']
             ]);
 
@@ -153,7 +153,7 @@ class EventController extends Controller
                 'start_date' => 'sometimes|date|after_or_equal:today',
                 'end_date' => 'sometimes|date|after_or_equal:start_date',
                 'localisation' => 'sometimes|string|max:255',
-                'amount' => 'sometimes|numeric|min:0|max:1000000',
+                'amount_event' => 'sometimes|numeric|min:0|max:1000000',
                 'number_available_event' => 'sometimes|integer|min:0'
             ]);
 

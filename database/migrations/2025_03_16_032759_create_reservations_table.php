@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
-            $table->foreignId('id_site')->nullable()->constrained('sites')->onDelete('set null');
-            $table->foreignId('id_event')->nullable()->constrained('events')->onDelete('set null');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('site_id')->nullable()->constrained('sites')->onDelete('set null');
+            $table->foreignId('event_id')->nullable()->constrained('events')->onDelete('set null');
             $table->enum('status', ['pending', 'confirmed', 'canceled'])->default('pending');
-            $table->timestamp('reservation_date')->useCurrent();
+            $table->decimal('amount_reservation', 10, 2);
+            $table->timestamp('date_reservation')->useCurrent();
             $table->timestamps();
         });
     }

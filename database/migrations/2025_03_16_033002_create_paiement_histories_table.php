@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('id_paiement')->constrained('paiements')->onDelete('cascade');
             $table->string('label', 255);
             $table->decimal('amount', 10, 2);
-            $table->enum('method', ['feda_pay', 'bank_card']);
+            $table->enum('method', ['mobile_money', 'bank_card']);
             $table->enum('status', ['pending', 'paid', 'failure'])->default('pending');
             $table->timestamps();
         });

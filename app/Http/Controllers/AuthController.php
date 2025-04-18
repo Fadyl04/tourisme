@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\TypeUser;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    protected function getCustomerTypeId()
+    protected function getCustomerLabel()
     {
-        $customerType = TypeUser::where('label_type', 'customer')->first();
-        return $customerType ? $customerType->id : null;
+        $customer = Role::where('label_role', 'customer')->first();
+        return $customer ? $customer->id : null;
     }
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         try {
             //code...
             $request->validate([
@@ -24,12 +25,12 @@ class AuthController extends Controller
                 'user_password' => 'required|string|min:8|confirmed',
             ]);
             // Récupère l'ID de "customer"
-            $customerTypeId = $this->getCustomerTypeId();
-            if (!$customerTypeId) {
+            $customer = $this->getCustomerLabel();
+            if (!$customer) {
                 return response()->json(['message' => 'utilisateur non trouvé'], 404);
             }
             $user = User::create([
-                'id_type_user' => $customerTypeId,
+                'id_type_user' => $customer,
                 'user_name' => $request->user_name,
                 'user_email' => $request->user_email,
                 'user_phone' => $request->user_phone,
@@ -38,18 +39,19 @@ class AuthController extends Controller
             ]);
             return response()->json(
                 [
-                    'message'=>'Utilisateur enregistré', 
-                    'user'=>$user
-                ], 200
+                    'message' => 'Utilisateur enregistré',
+                    'user' => $user
+                ],
+                200
             );
         } catch (\Throwable $e) {
             //throw $th;
             return $e->getMessage();
         }
-
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $request->validate([
             'user_email' => 'required|email',
             'user_password' => 'required|string'
@@ -59,13 +61,28 @@ class AuthController extends Controller
             return response()->json(['message' => 'Identifiants invalides'], 401);
         }
         $token = $user->createToken('auth_token')->plainTextToken;
-        return response()->json([
-                'message'=>'Utilisateur connecté',
+        if ($user->first_login) {
+            return response()->json([
+                'message' => 'Première connexion — veuillez changer votre mot de passe.',
+                'token' => $token,
+                'first_login' => true,
+                'redirect' => 'change-password'
+            ], 200);
+        }
+        $role = $user->role->label_role;
+        $dashboard = match($role){
+            'organizer' => 'organizer/dashboard',
+        };
+        return response()->json(
+            [
+                'message' => 'Utilisateur connecté',
                 'token' => $token
-            ],  200
+            ],
+            200
         );
     }
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Déconnexion réussie']);
     }

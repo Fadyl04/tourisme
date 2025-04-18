@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $table = 'users';
     protected $fillable = [
-        'id_type_user',
+        'role_id',
         'user_name',
         'user_email',
         'user_phone',
@@ -32,9 +32,9 @@ class User extends Authenticatable
     ];
 
     
-    public function typeUser()
+    public function role()
     {
-        return $this->belongsTo(TypeUser::class, 'id_type_user');
+        return $this->belongsTo(Role::class, 'role_id');
     }
 
     /**
