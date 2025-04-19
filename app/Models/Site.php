@@ -2,18 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Site extends Model
 {
     //
+    use HasFactory;
     protected $table = 'sites';
     protected $fillable =[
-        'site_picture',
-        'site_name',
-        'site_description',
-        'site_localisation',
-        'site_amount',
-        'site_number_available'
+        'picture_site',
+        'name_site',
+        'localisation_site',
+        'description_site'
     ];
+    public function visitTouristiques()
+    {
+        return $this->belongsToMany(VisitTouristique::class);
+    }
 }

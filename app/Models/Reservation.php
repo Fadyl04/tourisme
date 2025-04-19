@@ -16,8 +16,7 @@ class Reservation extends Model
         'user_id',
         'site_id', 
         'event_id', 
-        'status', 
-        'amount_reservation',
+        'status',
         'date_reservation'
     ];
     protected $dates = [

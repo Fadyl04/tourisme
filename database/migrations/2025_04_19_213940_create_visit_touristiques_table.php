@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sites', function (Blueprint $table) {
+        Schema::create('visit_touristiques', function (Blueprint $table) {
             $table->id();
-            $table->string('picture_site');
-            $table->string('name_site');
-            $table->text('description_site');
-            $table->string('localisation_site');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->date('depart_date');
+            $table->string('lieu');
+            $table->decimal('amount_visit', 10, 2);
+            $table->json('sites');
+            $table->integer('number_place');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sites');
+        Schema::dropIfExists('visit_touristiques');
     }
 };

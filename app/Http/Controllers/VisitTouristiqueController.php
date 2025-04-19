@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notice;
+use App\Models\VisitTouristique;
 use Illuminate\Http\Request;
 
-class NoticeController extends Controller
+class VisitTouristiqueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class NoticeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Notice $notice)
+    public function show(VisitTouristique $visitTouristique)
     {
         //
     }
@@ -42,7 +42,7 @@ class NoticeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Notice $notice)
+    public function edit(VisitTouristique $visitTouristique)
     {
         //
     }
@@ -50,7 +50,7 @@ class NoticeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Notice $notice)
+    public function update(Request $request, VisitTouristique $visitTouristique)
     {
         //
     }
@@ -58,7 +58,7 @@ class NoticeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Notice $notice)
+    public function destroy(VisitTouristique $visitTouristique)
     {
         //
     }
